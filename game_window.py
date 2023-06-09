@@ -160,7 +160,7 @@ def startgame(mode,players):
                             filled.append(i)
                             move = "ai"
                             # update on screen
-                            screen.blit(style.render(players[0],True,(0,0,0)),(j[0],j[1]))
+                            screen.blit(style.render(players[0],True,(0,0,0)),(j[0]+(j[2]//2),j[1]+(j[3]//2)))
                             # update on board
                             x_val = i//3
                             y_val = i%3
@@ -176,10 +176,11 @@ def startgame(mode,players):
             if move == "ai":
                 move = "human"
                 cpmove = find_best_move(board,players[1],ismax)
+                print(cpmove)
                 board[cpmove[0]][cpmove[1]]=players[1]
                 cell_pos = (3*cpmove[0])+(cpmove[1]%3)
                 filled.append(cell_pos)
-                screen.blit(style.render(players[1],True,(0,0,0)),(gridmap[cell_pos][0],gridmap[cell_pos][1]))
+                screen.blit(style.render(players[1],True,(0,0,0)),(gridmap[cell_pos][0]+(gridmap[cell_pos][2]//2),gridmap[cell_pos][1]+(gridmap[cell_pos][3]//2)))
                 # print(board)
                 t = checkwin(board)
                 if t[0]:
@@ -215,7 +216,7 @@ def startgame(mode,players):
                             play = "X" if len(filled)%2==1 else "O"
                             move_surf = style.render(play,True,(0,0,0))
                             # update on screen
-                            screen.blit(move_surf,(j[0],j[1]))
+                            screen.blit(move_surf,(j[0]+(j[2]//2),j[1]+(j[3]//2)))
                             # update on board
                             x_val = i//3
                             y_val = i%3
